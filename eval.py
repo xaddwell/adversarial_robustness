@@ -1,6 +1,6 @@
 import torch
 from config import *
-from utils.getPretrainedModel import get_trained_generator,get_trained_classifier
+from utils.get_models import get_trained_generator,get_trained_classifier
 from utils.get_trainingloader import get_loader
 import os
 import datetime

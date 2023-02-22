@@ -3,7 +3,7 @@ from config import *
 import os
 from loss_func import *
 from utils.get_trainingloader import get_loader
-from utils.getPretrainedModel import get_trained_generator
+from utils.get_models import get_trained_generator
 
 def refining_data():
     id = 0

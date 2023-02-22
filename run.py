@@ -1,14 +1,14 @@
 import torch
 from torch.autograd import Variable
 import sys
-from models.core import ResUnet,ResUnetPlusPlus,ResUnet01
+from models.Unet import ResUnet,ResUnetPlusPlus,ResUnet01
 from config import *
 from models import Generator as cycleGAN_G
 import os
 from loss_func import *
 import datetime
 from utils.get_trainingloader import get_loader
-from utils.getPretrainedModel import get_trained_classifier
+from utils.get_models import get_trained_classifier
 
 
 def get_Generator_Model(generator_name):

@@ -1,5 +1,6 @@
-from .shufflenet import ShuffleNet_v2_30,ShuffleNet_with_feature
-from .resnet import ResNet18_30,ResNet18_with_feature
-from .mobilenet import Mobilenet_v2_30
-from .densenet import Densenet121_30
-from .cycleGAN_Generator import Generator
+
+
+from .classifiers.models import Mobilenet_v2_30,ResNet18_30,\
+    Densenet121_30,ShuffleNet_v2_30
+
+from .Unet import ResUnet01,ResUnet,ResUnetPlusPlus

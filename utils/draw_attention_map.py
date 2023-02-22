@@ -2,7 +2,7 @@ import torch
 from torch.utils.data import DataLoader
 from config import *
 from utils.imageNet_datasets import imageNet_datasets
-from utils.getPretrainedModel import get_trained_generator,get_trained_classifier
+from utils.get_models import get_trained_generator,get_trained_classifier
 import matplotlib.pyplot as plt
 from torchcam.utils import overlay_mask
 from torchvision.transforms.functional import to_pil_image

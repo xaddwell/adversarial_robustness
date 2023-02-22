@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 from torchvision import transforms
 from utils import imageNet_datasets
-from utils.getPretrainedModel import get_trained_classifier
+from utils.get_models import get_trained_classifier
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 def confusion_matrix(preds, labels, conf_matrix):

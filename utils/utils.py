@@ -1,27 +1,28 @@
 import torch
-from models import ResNet18_30,Mobilenet_v2_30,ResNet18_with_feature
-from models import ShuffleNet_v2_30,Densenet121_30,ShuffleNet_with_feature
-from models.core import ResUnet,ResUnetPlusPlus,ResUnet01
-from models import Generator as cycleGAN_G
+from models import ResNet18_30,Mobilenet_v2_30
+from models import ShuffleNet_v2_30,Densenet121_30
+from models.Unet import ResUnet,ResUnetPlusPlus,ResUnet01
+from timm import create_model
 from config import *
 
-def get_trained_classifier(model_name,use_cuda=True,feature_map = False):
+
+__all__ = ['get_classifier','get_generator']
+
+
+def get_classifier(model_name,pretrained = False, use_cuda=True,feature_map = False):
 
     if model_name == 'ResNet18':
-        model = ResNet18_30(feature_map=feature_map)
+        model = ResNet18_30(pretrained=pretrained,feature_map=feature_map)
     elif model_name == 'ShuffleNetv2':
-        model = ShuffleNet_v2_30(feature_map=feature_map)
+        model = ShuffleNet_v2_30(pretrained=pretrained,feature_map=feature_map)
     elif model_name == 'MobileNetv2':
-        model = Mobilenet_v2_30(feature_map=feature_map)
+        model = Mobilenet_v2_30(pretrained=pretrained,feature_map=feature_map)
     elif model_name == 'DenseNet121':
-        model = Densenet121_30(feature_map=feature_map)
-    elif model_name == 'ShuffleNetv2_with_allfea':
-        model = ShuffleNet_with_feature(feature_map=feature_map)
-        model_name = model_name.split("_")[0]
-    elif model_name == 'ResNet18_with_allfea':
-        model = ResNet18_with_feature(feature_map=feature_map)
-        model_name = model_name.split("_")[0]
-
+        model = Densenet121_30(pretrained=pretrained,feature_map=feature_map)
+    elif model_name == 'ViT-patch16':
+        model = create_model(model_name = 'vit_base_patch16_224')
+    elif model_name == 'Inception-ResNet-v2':
+        model = create_model(model_name = 'inception_resnet_v2')
 
     model_dir = model_weight_dir + '/{}.pt'.format(model_name)
 
@@ -34,15 +35,13 @@ def get_trained_classifier(model_name,use_cuda=True,feature_map = False):
     else:
         return None
 
-def get_trained_generator(victim_model,source_attack_method,
+def get_generator(victim_model,source_attack_method,
                   generator_name,use_cuda=True):
 
     if generator_name == 'ResUNet':
-        model = ResUnet01(channel=3)
+        model = ResUnet(channel=3)
     elif generator_name == 'ResUNetPlusPlus':
         model = ResUnetPlusPlus(channel=3)
-    elif generator_name == 'cycleGAN_G':
-        model = cycleGAN_G(input_nc=3,output_nc=3)
     elif generator_name == 'ResUNet01':
         model = ResUnet01(channel=3)
 

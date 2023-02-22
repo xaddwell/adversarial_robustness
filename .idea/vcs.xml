@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/relatedworks/APE-GAN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/Adversarial_Patch_Attack" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/Comdefend" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/DefenseGAN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/SMSR" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/TSAA" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/adversarial-patch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/hgd-adversarial-defense-pytorch" vcs="Git" />
+  </component>
+</project>

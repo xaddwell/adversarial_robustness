@@ -1,5 +1,5 @@
 from utils.midlayer_sim import draw_2midlayer_sim
-from utils.getPretrainedModel import get_trained_classifier,get_trained_generator
+from utils.get_models import get_trained_classifier,get_trained_generator
 from utils.get_trainingloader import get_loader
 import matplotlib.pyplot as plt
 import torch
