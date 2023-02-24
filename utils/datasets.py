@@ -106,9 +106,9 @@ def get_loader(datasets_name, stage, batch_size, num_workers):
             elif datasets_name == "SVHN":
                 dataset = SVHN(root=os.path.join(cfg.datasets_dir),split = "train",transform = svhn_transform)
             elif datasets_name == "CIFAR10":
-                dataset = CIFAR10(root=os.path.join(cfg.datasets_dir),train = True,transform = cifar10_transform_test)
+                dataset = CIFAR10(root=os.path.join(cfg.datasets_dir,"CIFAR10"),train = True,transform = cifar10_transform_test)
             elif datasets_name == "CIFAR100":
-                dataset = CIFAR100(root=os.path.join(cfg.datasets_dir),train = True,transform = cifar100_transform_test)
+                dataset = CIFAR100(root=os.path.join(cfg.datasets_dir,"CIFAR100"),train = True,transform = cifar100_transform_test)
 
             return DataLoader(dataset,
                               batch_size=batch_size,
@@ -124,7 +124,7 @@ def get_loader(datasets_name, stage, batch_size, num_workers):
             elif datasets_name == "CIFAR10":
                 dataset = CIFAR10(root=os.path.join(cfg.datasets_dir,"CIFAR10"),train = True,transform = cifar10_transform_train,download=True)
             elif datasets_name == "CIFAR100":
-                dataset = CIFAR100(root=os.path.join(cfg.datasets_dir),train = True,transform = cifar100_transform_train)
+                dataset = CIFAR100(root=os.path.join(cfg.datasets_dir,"CIFAR100"),train = True,transform = cifar100_transform_train)
 
             dataset_size = len(dataset)
             train_size = int(dataset_size * (1 - cfg.val_split))
