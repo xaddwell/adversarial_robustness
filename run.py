@@ -15,7 +15,6 @@ import argparse
 import wandb
 
 parser = argparse.ArgumentParser()
-
 parser.add_argument("--config-file", default = None, help = "配置文件的路径。")
 parser.add_argument('--model_name', default = "ResNet" ,type=str,help='model_name')
 parser.add_argument('--datasets', default = "CIFAR10", type=str,help='datasets')

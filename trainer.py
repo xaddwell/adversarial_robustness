@@ -122,5 +122,5 @@ class Trainer(object):
             ckpt_name = "/{}_{}_ckpt_best.pth".format(self.args.datasets,self.args.model_name)
             torch.save(checkpoint, (self.args.ckpt_dir + "/pretrained/" + ckpt_name))
         else:
-            ckpt_name = "/{}_{}_ckpt_epoch_{}.pth".format(self.args.datasets, self.args.model_name,self.iteration)
+            ckpt_name = "/{}_{}_ckpt.pth".format(self.args.datasets, self.args.model_name,self.iteration)
             torch.save(checkpoint, (self.args.result_dir + ckpt_name))

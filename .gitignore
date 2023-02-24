@@ -3,3 +3,4 @@ ckpt/
 visualization/
 log/
 relatedworks/
+*.pth

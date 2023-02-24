@@ -1,7 +1,8 @@
 root_dir: D:\cjh\Adversarial_Robustness/
 datasets_dir: ${root_dir}datasets/
 ckpt_dir: ${root_dir}ckpt/
-log_dir: D:\cjh\Adversarial_Robustness/log//CIFAR10_ResNet_2023-02-24-12-32-30.txt
+log_dir: D:\cjh\Adversarial_Robustness/result//CIFAR10_ResNet_2023-02-24-16-23-44/CIFAR10_ResNet_2023-02-24-16-23-44.txt
+result_dir: D:\cjh\Adversarial_Robustness/result//CIFAR10_ResNet_2023-02-24-16-23-44
 optimizer: Adam
 lr: 0.001
 weight_decay: 0.0001
