@@ -1,4 +1,4 @@
-from config import *
+from default_config import *
 import numpy as np
 from torch.utils.data import SubsetRandomSampler,DataLoader
 from utils.imageNet_datasets import train_imageNet_datasets

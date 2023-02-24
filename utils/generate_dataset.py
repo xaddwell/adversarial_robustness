@@ -11,7 +11,8 @@ from utils.imageNet_datasets import imageNet_datasets
 import torchattacks as ta
 from tqdm import tqdm
 from  torchvision import utils as vutils
-from config import *
+import os
+from default_config import *
 
 # os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 torch.backends.cudnn.enabled = False

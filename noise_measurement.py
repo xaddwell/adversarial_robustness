@@ -5,7 +5,7 @@ import torch
 import torch.nn.functional as F
 from math import exp
 import numpy as np
-from config import *
+from default_config import *
 from PIL import Image
 from torchvision import transforms
 

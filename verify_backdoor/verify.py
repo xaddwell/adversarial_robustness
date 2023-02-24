@@ -1,7 +1,7 @@
 import torch
 from torch.autograd import Variable
 import sys
-from config import *
+from default_config import *
 import os
 import datetime
 import numpy as np

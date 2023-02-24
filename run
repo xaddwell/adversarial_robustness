@@ -1,0 +1,18 @@
+python run.py --model_name ResNet --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name ResNext --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name VGG --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name WideResNet --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+
+python run.py --model_name ResNet --datasets CIFAR100 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name ResNext --datasets CIFAR100 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name VGG --datasets CIFAR100 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name WideResNet --datasets CIFAR100 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --num_workers 0 --save_ckpt_interval_epoch 1
+
+python run.py --model_name ResNet18 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name ShuffleNetv2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name MobileNetv2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name DenseNet121 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name ViT-patch16 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --num_workers 0 --save_ckpt_interval_epoch 1
+python run.py --model_name Inception-ResNet-v2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --num_workers 0 --save_ckpt_interval_epoch 1
+
+

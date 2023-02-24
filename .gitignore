@@ -1,5 +1,5 @@
 datasets/
-weight/
+ckpt/
 visualization/
 log/
 relatedworks/

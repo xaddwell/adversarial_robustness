@@ -1,5 +1,5 @@
 import torch
-from config import *
+from default_config import *
 from utils.get_trainingloader import get_loader
 from utils.get_models import get_trained_classifier
 import numpy as np

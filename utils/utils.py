@@ -3,37 +3,59 @@ from models import ResNet18_30,Mobilenet_v2_30
 from models import ShuffleNet_v2_30,Densenet121_30
 from models.Unet import ResUnet,ResUnetPlusPlus,ResUnet01
 from timm import create_model
-from config import *
+from default_config import get_default_cfg
+import models.classifiers.CIFAR as cifar
+import logging
+
+cfg = get_default_cfg()
 
 
 __all__ = ['get_classifier','get_generator']
 
 
-def get_classifier(model_name,pretrained = False, use_cuda=True,feature_map = False):
+def get_classifier(args,pretrained = True, feature_map = False):
 
-    if model_name == 'ResNet18':
-        model = ResNet18_30(pretrained=pretrained,feature_map=feature_map)
-    elif model_name == 'ShuffleNetv2':
-        model = ShuffleNet_v2_30(pretrained=pretrained,feature_map=feature_map)
-    elif model_name == 'MobileNetv2':
-        model = Mobilenet_v2_30(pretrained=pretrained,feature_map=feature_map)
-    elif model_name == 'DenseNet121':
-        model = Densenet121_30(pretrained=pretrained,feature_map=feature_map)
-    elif model_name == 'ViT-patch16':
-        model = create_model(model_name = 'vit_base_patch16_224')
-    elif model_name == 'Inception-ResNet-v2':
-        model = create_model(model_name = 'inception_resnet_v2')
+    model_name = args.model_name
+    dataset_name = args.datasets
 
-    model_dir = model_weight_dir + '/{}.pt'.format(model_name)
+    if dataset_name == "ImageNet":
 
-    if model_name:
-        print("=====>>>load pretrained model {} from {}".
-              format(model_name, model_dir))
-        model.load_state_dict(torch.load(
-            model_dir,map_location='cuda' if use_cuda else 'cpu'))
-        return model
-    else:
-        return None
+        if model_name == 'ResNet18':
+            model = ResNet18_30(pretrained=pretrained,feature_map=feature_map)
+        elif model_name == 'ShuffleNetv2':
+            model = ShuffleNet_v2_30(pretrained=pretrained,feature_map=feature_map)
+        elif model_name == 'MobileNetv2':
+            model = Mobilenet_v2_30(pretrained=pretrained,feature_map=feature_map)
+        elif model_name == 'DenseNet121':
+            model = Densenet121_30(pretrained=pretrained,feature_map=feature_map)
+        elif model_name == 'ViT-patch16':
+            model = create_model(model_name = 'vit_base_patch16_224')
+        elif model_name == 'Inception-ResNet-v2':
+            model = create_model(model_name = 'inception_resnet_v2')
+
+    elif dataset_name == "CIFAR10":
+
+        if model_name == 'ResNext':
+            model = cifar.resnext(class_names=10)
+        elif model_name == 'VGG':
+            model = cifar.vgg(num_class=10)
+        elif model_name == 'WideResNet':
+            model = cifar.wrn(num_classes=10)
+        elif model_name == 'ResNet':
+            model = cifar.resnet(num_classes=10)
+
+    elif dataset_name == "CIFAR100":
+
+        if model_name == 'ResNext':
+            model = cifar.resnext(class_names=100)
+        elif model_name == 'VGG':
+            model = cifar.vgg(num_class=100)
+        elif model_name == 'WideResNet':
+            model = cifar.wrn(num_classes=100)
+        elif model_name == 'ResNet':
+            model = cifar.resnet(num_classes=100)
+
+    return model
 
 def get_generator(victim_model,source_attack_method,
                   generator_name,use_cuda=True):
@@ -45,7 +67,7 @@ def get_generator(victim_model,source_attack_method,
     elif generator_name == 'ResUNet01':
         model = ResUnet01(channel=3)
 
-    generator_dir = save_generator_weight + '/{}/{}/{}.pt'. \
+    generator_dir = cfg.ckpt_dir + '/{}/{}/{}.pt'. \
         format(victim_model, source_attack_method, generator_name)
 
     if generator_name:
@@ -56,3 +78,27 @@ def get_generator(victim_model,source_attack_method,
         return model
     else:
         return None
+
+
+def get_logger(filename):
+
+    return Logger(log_path=filename)
+
+
+class Logger(object):
+    def __init__(self, log_path="default.log"):
+        import sys
+        self.terminal = sys.stdout
+        self.log = open(log_path, "w", buffering=1, encoding="utf-8")
+
+    def print(self, *message):
+        message = ",".join([str(it) for it in message])
+        self.terminal.write(str(message) + "\n")
+        self.log.write(str(message) + "\n")
+
+    def flush(self):
+        self.terminal.flush()
+        self.log.flush()
+
+    def close(self):
+        self.log.close()

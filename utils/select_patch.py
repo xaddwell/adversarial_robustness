@@ -14,7 +14,7 @@ from models import ShuffleNet_v2_30
 from models import ResNet18_30
 from models import Densenet121_30
 from models import Mobilenet_v2_30
-from config import *
+from default_config import *
 from utils.get_trainingloader import get_loader
 
 def get_classifier(model_name,use_cuda=True):

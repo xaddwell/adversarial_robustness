@@ -14,7 +14,7 @@ from models import ShuffleNet_v2_30
 from models import ResNet18_30
 from models import Densenet121_30
 from models import Mobilenet_v2_30
-from config import *
+from default_config import *
 from utils.imageNet_datasets import generate_ADV_datasets
 
 

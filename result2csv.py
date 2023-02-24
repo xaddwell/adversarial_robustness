@@ -1,5 +1,5 @@
 import pandas as pd
-from config import *
+from default_config import *
 import numpy as np
 
 path = root_path + r'\log\test\ShuffleNetv2\DIFGSM\ResUnet/'

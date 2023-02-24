@@ -1,6 +1,6 @@
 import torch
 from torch.utils.data import DataLoader
-from config import *
+from default_config import *
 from utils.imageNet_datasets import eval_imageNet_datasets
 from utils.get_models import get_trained_generator,get_trained_classifier
 from torchvision.transforms.functional import to_pil_image
