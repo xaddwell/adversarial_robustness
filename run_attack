@@ -1,0 +1,16 @@
+python attack.py --datasets CIFAR10 --model_name ResNet --attack_method AutoAttack --batch_size 512 --target_model ResNet MobileNetv2 ShuffleNetv2
+python attack.py --datasets CIFAR10 --model_name MobileNetv2 --attack_method AutoAttack --batch_size 512 --target_model ResNet MobileNetv2 ShuffleNetv2
+python attack.py --datasets CIFAR10 --model_name ShuffleNetv2 --attack_method AutoAttack --batch_size 512 --target_model ResNet MobileNetv2 ShuffleNetv2
+
+python attack.py --datasets CIFAR100 --model_name ResNet --batch_size 512 --target_model ResNet MobileNetv2 ShuffleNetv2
+python attack.py --datasets CIFAR100 --model_name MobileNetv2 --batch_size 512 --target_model ResNet MobileNetv2 ShuffleNetv2
+python attack.py --datasets CIFAR100 --model_name ShuffleNetv2 --batch_size 512 --target_model ResNet MobileNetv2 ShuffleNetv2
+
+python attack.py --datasets ImageNet --model_name ResNet18 --batch_size 64 --target_model ResNet18 MobileNetv2 ShuffleNetv2 DenseNet121 ViT-patch16 Inception-ResNet-v2
+python attack.py --datasets ImageNet --model_name ShuffleNetv2 --batch_size 64 --target_model ResNet18 MobileNetv2 ShuffleNetv2 DenseNet121 ViT-patch16 Inception-ResNet-v2
+python attack.py --datasets ImageNet --model_name MobileNetv2 --batch_size 64 --target_model ResNet18 MobileNetv2 ShuffleNetv2 DenseNet121 ViT-patch16 Inception-ResNet-v2
+python attack.py --datasets ImageNet --model_name DenseNet121 --batch_size 64 --target_model ResNet18 MobileNetv2 ShuffleNetv2 DenseNet121 ViT-patch16 Inception-ResNet-v2
+python attack.py --datasets ImageNet --model_name ViT-patch16 --batch_size 64 --target_model ResNet18 MobileNetv2 ShuffleNetv2 DenseNet121 ViT-patch16 Inception-ResNet-v2
+python attack.py --datasets ImageNet --model_name Inception-ResNet-v2 --batch_size 64 --target_model ResNet18 MobileNetv2 ShuffleNetv2 DenseNet121 ViT-patch16 Inception-ResNet-v2
+
+

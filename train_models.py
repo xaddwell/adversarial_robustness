@@ -48,6 +48,7 @@ def update_config(args):
 
 if __name__ == '__main__':
     args = update_config(args)
+
     time = str(datetime.datetime.now()).split('.')[0].replace(':','-').replace(' ','-')
     filename = '/{}_{}_{}'.format(args.datasets,args.model_name,time)
     args.result_dir = args.result_dir + filename
@@ -56,6 +57,7 @@ if __name__ == '__main__':
     args.log_dir = args.result_dir + filename+".txt"
     with open(args.result_dir + filename + ".yaml",mode='w') as fp:
         OmegaConf.save(config=args, f=fp.name)
+
     trainer = Trainer(args = args)
     trainer.run()
 

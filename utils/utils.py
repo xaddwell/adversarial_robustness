@@ -1,6 +1,7 @@
 import torch
 from models import ResNet18_30,Mobilenet_v2_30
 from models import ShuffleNet_v2_30,Densenet121_30
+from models import CIFAR_ResNet18,CIFAR_WideResNet28_10
 from models.Unet import ResUnet,ResUnetPlusPlus,ResUnet01
 from timm import create_model
 from default_config import get_default_cfg
@@ -26,28 +27,38 @@ def get_classifier(args,pretrained = True, feature_map = False):
             model = Mobilenet_v2_30(pretrained=pretrained,feature_map=feature_map)
         elif model_name == 'DenseNet121':
             model = Densenet121_30(pretrained=pretrained,feature_map=feature_map)
-        elif model_name == 'ViT-patch16':
-            model = create_model(model_name = 'vit_base_patch16_224')
+        elif model_name == 'SwinT-small':
+            model = create_model(model_name = 'swin_small_patch4_window7_224',pretrained=pretrained,num_classes=30)
         elif model_name == 'Inception-ResNet-v2':
-            model = create_model(model_name = 'inception_resnet_v2')
+            model = create_model(model_name = 'inception_resnet_v2',pretrained=pretrained,num_classes=30)
 
     elif dataset_name == "CIFAR10":
 
         if model_name == 'MobileNetv2':
-            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_mobilenetv2_x1_4", pretrained=True)
+            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_mobilenetv2_x1_4", pretrained=pretrained)
         elif model_name == 'ShuffleNetv2':
-            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_shufflenetv2_x1_5", pretrained=True)
+            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_shufflenetv2_x1_5", pretrained=pretrained)
         elif model_name == 'ResNet':
-            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet56", pretrained=True)
+            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet56", pretrained=pretrained)
+        elif model_name == 'ResNet18':
+            model = CIFAR_ResNet18(num_classes=10)
+        elif model_name == 'WideResNet28_10':
+            model = CIFAR_WideResNet28_10(num_classes=10)
 
     elif dataset_name == "CIFAR100":
 
         if model_name == 'MobileNetv2':
-            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar100_mobilenetv2_x1_4", pretrained=True)
+            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar100_mobilenetv2_x1_4", pretrained=pretrained)
         elif model_name == 'ShuffleNetv2':
-            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar100_shufflenetv2_x1_5", pretrained=True)
+            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar100_shufflenetv2_x1_5", pretrained=pretrained)
         elif model_name == 'ResNet':
-            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar100_resnet56", pretrained=True)
+            model = torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar100_resnet56", pretrained=pretrained)
+        elif model_name == 'ResNet18':
+            model = CIFAR_ResNet18(num_classes=100)
+        elif model_name == 'WideResNet28_10':
+            model = CIFAR_WideResNet28_10(num_classes=100)
+    else:
+        model = None
 
     return model
 
@@ -74,10 +85,12 @@ def get_generator(victim_model,source_attack_method,
         return None
 
 def model_load_ckpt_eval(args,model):
-    ckpt_path = "{}/{}_{}_ckpt_best".format(args.ckpt_dir,args.datasets,args.model_name)
+    ckpt_path = "{}/pretrained/{}_{}_ckpt_best.pth".format(args.ckpt_dir,args.datasets,args.model_name)
     ckpt = torch.load(ckpt_path)
     model.load_state_dict(ckpt['net'])
     model.eval()
+    print("load {} from {}".format(args.model_name, ckpt_path))
+    return model
 
 def get_logger(filename):
 

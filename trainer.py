@@ -1,6 +1,7 @@
 
 from utils.utils import get_classifier,get_logger
 from utils.datasets import get_loader
+from utils.transform import get_transform
 import torch
 import os
 from PIL import ImageFile
@@ -47,8 +48,11 @@ class Trainer(object):
             if args.use_cuda:
                 self.model = self.model.cuda()
 
+        transform = get_transform(args.model_name,args.datasets,stage="train")
         train_loader, val_loader = get_loader(datasets_name=args.datasets,stage='train',
-                                              batch_size=args.batch_size,num_workers=args.num_workers)
+                                              batch_size=args.batch_size,
+                                              num_workers=args.num_workers,
+                                              transform=transform)
 
         self.criterion = torch.nn.CrossEntropyLoss()
         self.train_loader = train_loader

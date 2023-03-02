@@ -1,12 +1,16 @@
 #python train_models.py --model_name MobileNetv2 --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --save_ckpt_interval_epoch 1 --resume True
+python train_models.py --model_name ResNet18 --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+python train_models.py --model_name WideResNet28_10 --datasets CIFAR10 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
 
 #python train_models.py --model_name ResNet --datasets CIFAR100 --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --save_ckpt_interval_epoch 1
 #python train_models.py --model_name MobileNetv2 --datasets CIFAR100 --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --save_ckpt_interval_epoch 1
 #python train_models.py --model_name ShuffleNetv2 --datasets CIFAR100 --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 50 --save_ckpt_interval_epoch 1
+python train_models.py --model_name ResNet18 --datasets CIFAR100 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+python train_models.py --model_name WideResNet28_10 --datasets CIFAR100 --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
 
-python train_models.py --model_name ResNet18 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
-python train_models.py --model_name ShuffleNetv2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
-python train_models.py --model_name MobileNetv2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
-python train_models.py --model_name DenseNet121 --datasets ImageNet --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
-python train_models.py --model_name ViT-patch16 --datasets ImageNet --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
-python train_models.py --model_name Inception-ResNet-v2 --datasets ImageNet --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+#python train_models.py --model_name ResNet18 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+#python train_models.py --model_name ShuffleNetv2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+#python train_models.py --model_name MobileNetv2 --datasets ImageNet --batch_size 128 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+#python train_models.py --model_name DenseNet121 --datasets ImageNet --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+#python train_models.py --model_name SwinT-small --datasets ImageNet --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
+#python train_models.py --model_name Inception-ResNet-v2 --datasets ImageNet --batch_size 64 --lr 1e-3 --weight_decay 1e-4 --max_epochs 100 --save_ckpt_interval_epoch 5
