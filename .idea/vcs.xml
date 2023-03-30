@@ -6,6 +6,7 @@
     <mapping directory="$PROJECT_DIR$/relatedworks/Adversarial_Patch_Attack" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/relatedworks/Comdefend" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/relatedworks/DefenseGAN" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/relatedworks/High Level Denoiser" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/relatedworks/SMSR" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/relatedworks/TSAA" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/relatedworks/adversarial-patch" vcs="Git" />

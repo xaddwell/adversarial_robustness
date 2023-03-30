@@ -8,6 +8,12 @@ torch.manual_seed(cfg.random_seed)
 
 to_tensor = transforms.Compose([transforms.ToTensor()])
 
+diff2raw = transforms.Normalize((-1.0, -1.0, -1.0), (2.0, 2.0, 2.0))
+raw2diff = transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+cifar10_raw2clf = transforms.Normalize((0.4940, 0.4850, 0.4504), (0.2467, 0.2429, 0.2616))
+cifar100_raw2clf = transforms.Normalize([0.5071, 0.4865, 0.4409], [0.2673, 0.2564, 0.2762])
+imagenet_raw2clf = transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+
 svhn_transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),

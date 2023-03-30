@@ -1,18 +1,10 @@
-import torch
-from torch.autograd import Variable
-import sys
 import os
-from loss_func import *
-from omegaconf import OmegaConf
-from utils.utils import get_classifier
-from utils.datasets import get_loader
 from default_config import get_default_cfg
 from omegaconf import OmegaConf
 from trainer import Trainer
 import datetime
 import yaml
 import argparse
-import wandb
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--config-file", default = None, help = "配置文件的路径。")

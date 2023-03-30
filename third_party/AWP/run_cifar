@@ -1,0 +1,2 @@
+python third_party/AWP/trades_AWP/train_trades_cifar.py --model_name ResNet18 --batch-size 128 --epochs 100
+python third_party/AWP/trades_AWP/train_trades_cifar.py --model_name WideResNet28_10 --batch-size 64 --epochs 100

@@ -10,12 +10,8 @@ from PIL import ImageFile
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
-from models import ShuffleNet_v2_30
-from models import ResNet18_30
-from models import Densenet121_30
-from models import Mobilenet_v2_30
 from default_config import *
-from utils.imageNet_datasets import generate_ADV_datasets
+
 
 
 class AdversarialPatch():
@@ -222,97 +218,28 @@ class AdversarialPatch():
         pass
 
 
-def get_classifier(model_name,use_cuda=True):
-
-    if model_name == 'ResNet18':
-        model = ResNet18_30()
-    elif model_name == 'ShuffleNetv2':
-        model = ShuffleNet_v2_30()
-    elif model_name == 'MobileNetv2':
-        model = Mobilenet_v2_30()
-    elif model_name == 'DenseNet121':
-        model = Densenet121_30()
-
-    model_dir = model_weight_dir + '/{}.pt'.format(model_name)
-
-    if model_name:
-        print("=====>>>load pretrained model {} from {}".
-              format(model_name, model_dir))
-        model.load_state_dict(torch.load(
-            model_dir,map_location='cuda' if use_cuda else 'cpu'))
-        return model
-    else:
-        return None
 
 
-train_transform = transforms.Compose([
-    transforms.RandomResizedCrop(224),
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-])
-
-def get_loader():
-
-    datasets = generate_ADV_datasets(imageNet_dir, transform=train_transform)
-    dataset_size = len(datasets)
-    indices = list(range(dataset_size))
-
-    if shuffle_training_dataset:
-        np.random.seed(random_seed)
-        np.random.shuffle(indices)
-
-    train_indices, test_indices = indices[0:train_size], indices[train_size:train_size + test_size]
-
-    # Creating PT data samplers and loaders:
-    train_sampler = SubsetRandomSampler(train_indices)
-    test_sampler = SubsetRandomSampler(test_indices)
-
-    train_loader = DataLoader(datasets, batch_size=batch_size,
-                              sampler=train_sampler, num_workers=num_workers)
-    test_loader = DataLoader(datasets, batch_size=batch_size,
-                             sampler=test_sampler, num_workers=num_workers)
-
-    return train_loader,test_loader
-
-def initial_datasets_dir(target_model_name,attack_method):
-    os.chdir(ADV_imageNet_dir)
-    if not os.path.exists(target_model_name):
-        os.mkdir(target_model_name)
-    os.chdir(target_model_name)
-    if not os.path.exists(attack_method):
-        os.mkdir(attack_method)
-    os.chdir(attack_method)
-    if not os.path.exists('ori'):
-        os.mkdir('ori')
-    if not os.path.exists('advs'):
-        os.mkdir('advs')
-    path = os.getcwd()
-    os.chdir(root_path)
-    return path
 
 if __name__=="__main__":
-
-    train_size = 2000
-    test_size = 1000
-    noise_percentage = 0.16
-    probability_threshold = 0.9
-    lr = 1.0
-    max_iteration = 100
-    target_label = None
-    epochs = 20
-    patch_type = 'rectangle'
-    batch_size = 1
-    model_name = "ShuffleNetv2"
-    atk_method = "AdvPatch"
-    targeted_atk = 2
-
-    model = get_classifier(model_name).cuda()
-    path = initial_datasets_dir(model_name,atk_method)
-    model.eval()
-    train_loader,test_loader = get_loader()
+    patch_atk_config = {
+        "train_size": 2000,
+        "test_size": 1000,
+        "noise_percentage": 0.16,
+        "probability_threshold": 0.9,
+        "lr": 1.0,
+        "max_iteration": 100,
+        "target_label": None,
+        "epochs": 20,
+        "patch_type": "rectangle",
+        "targeted_atk":2
+    }
 
     temp = AdversarialPatch(model=model,save_path = path,
-                            targeted_atk = targeted_atk)
+                            targeted_atk = targeted_atk,
+                            patch_type = patch_type,
+                            image_size=(3,224,224),
+                            noise_percentage=noise_percentage)
     temp.initialize_patch()
     temp.optimize_patch(train_loader=train_loader,
                         target=targeted_atk,

@@ -253,3 +253,49 @@ class PreActResNet(nn.Module):
     out = F.avg_pool2d(out, 4)
     out = out.view(out.size(0), -1)
     return self.logits(out)
+
+
+
+class WideResNet28_10(nn.Module):
+  """WideResNet."""
+
+  def __init__(self,
+               num_classes: int = 10,
+               depth: int = 28,
+               width: int = 10,
+               activation_fn: nn.Module = nn.ReLU,
+               padding: int = 0,
+               num_input_channels: int = 3):
+    super().__init__()
+    self.padding = padding
+    num_channels = [16, 16 * width, 32 * width, 64 * width]
+    assert (depth - 4) % 6 == 0
+    num_blocks = (depth - 4) // 6
+    self.init_conv = nn.Conv2d(num_input_channels, num_channels[0],
+                               kernel_size=3, stride=1, padding=1, bias=False)
+    self.layer = nn.Sequential(
+        _BlockGroup(num_blocks, num_channels[0], num_channels[1], 1,
+                    activation_fn=activation_fn),
+        _BlockGroup(num_blocks, num_channels[1], num_channels[2], 2,
+                    activation_fn=activation_fn),
+        _BlockGroup(num_blocks, num_channels[2], num_channels[3], 2,
+                    activation_fn=activation_fn))
+    self.batchnorm = nn.BatchNorm2d(num_channels[3])
+    self.relu = activation_fn()
+    self.logits = nn.Linear(num_channels[3], num_classes)
+    self.num_channels = num_channels[3]
+
+  def forward(self, x):
+    if self.padding > 0:
+      x = F.pad(x, (self.padding,) * 4)
+    out = self.init_conv(x)
+    out = self.layer(out)
+    out = self.relu(self.batchnorm(out))
+    out = F.avg_pool2d(out, 8)
+    out = out.view(-1, self.num_channels)
+    return self.logits(out)
+
+
+
+
+

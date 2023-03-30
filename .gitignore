@@ -3,4 +3,7 @@ ckpt/
 visualization/
 log/
 relatedworks/
+third_party/
+other_exp/
+*.pth
 *.pth

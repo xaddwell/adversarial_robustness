@@ -1,0 +1,13 @@
+python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name ResNet18 --loss pgd
+python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name ResNet18 --loss alp
+python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name ResNet18 --loss trades
+#python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name ResNet18 --loss pgd_he
+#python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name ResNet18 --loss alp_he
+#python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name ResNet18 --loss trades_he
+
+python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name WideResNet28_10 --loss pgd --epochs 50 --batch-size 128
+python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name WideResNet28_10 --loss alp --epochs 50 --batch-size 128
+python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name WideResNet28_10 --loss trades --epochs 50 --batch-size 128
+#python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name WideResNet28_10 --loss pgd_he
+#python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name WideResNet28_10 --loss alp_he
+#python third_party/AT_HE/CIFAR-10/train_adv_cifar10.py --model_name WideResNet28_10 --loss trades_he

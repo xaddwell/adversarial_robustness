@@ -44,7 +44,7 @@ model_ckpt_path = {
 
 
 def get_model(datasets,model_name,author):
-    from third_party.models import resnet18,WideResNet
+    from third_party.models import ResNet18,WideResNet
     n_classes = 10 if datasets == "CIFAR10" else 100
     if model_name == "WRN28-10":
 
@@ -52,16 +52,17 @@ def get_model(datasets,model_name,author):
 
     elif model_name == "ResNet18":
 
-        model = resnet18(num_classes=n_classes)
+        model = ResNet18(num_classes=n_classes)
 
     ckpt_path = root_path + model_ckpt_path[datasets][model_name][author]['linf']
     ckpt = torch.load(ckpt_path)
     model.load_state_dict(ckpt,strict=False)
-    model.cuda()
-    model.eval()
+    model.cuda().eval()
+    return model
 
 if __name__ == "__main__":
 
     model = get_model("CIFAR10","WRN28-10","Rebuffi")
+    print(type(model),model)
 
         

@@ -1,0 +1,2 @@
+bash third_party/AT_HE/run_cifar
+bash third_party/AWP/run_cifar

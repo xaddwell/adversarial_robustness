@@ -1,0 +1,2 @@
+[Train] Epoch:[0/50]	 loss=0.00222	 acc=0.906
+[Val] Epoch:[0/50]	best_acc=0.914, ckpt saved

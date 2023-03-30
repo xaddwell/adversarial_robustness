@@ -1,2 +1,2 @@
-from .wrn import WideResNet
-from .resnet import resnet18
+from .wrn import WideResNet,WideResNet28_10
+from .resnet import resnet18 as ResNet18

@@ -1,9 +1,8 @@
 from torchvision.utils import save_image
-from default_config import *
 import os
-from loss_func import *
+from utils.loss_func import *
 from utils.get_trainingloader import get_loader
-from utils.utils import get_generator
+
 
 def refining_data():
     id = 0

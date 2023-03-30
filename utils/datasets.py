@@ -17,7 +17,8 @@ torch.manual_seed(cfg.random_seed)
 def get_loader(datasets_name, stage, batch_size, num_workers, transform = to_tensor):
 
     if datasets_name == 'ImageNet':
-        dataset = ImageFolder(root=os.path.join(cfg.datasets_dir,'ImageNet'),transform=transform)
+        dataset = ImageFolder(root=os.path.join(cfg.datasets_dir,'ImageNet'),
+                              transform=transforms.Compose([transforms.Resize((256,256)),transform]))
         dataset_size  = len(dataset)
         train_size = int(dataset_size*(1 - cfg.test_split))
         test_size = dataset_size - train_size

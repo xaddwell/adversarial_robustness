@@ -24,6 +24,7 @@ def set_optimizer(name,parameters,lr,weight_decay):
 
 class Trainer(object):
     def __init__(self, args):
+
         if args.resume:
             ckpt_name = "{}_{}_ckpt_best.pth".format(args.datasets, args.model_name)
             path_checkpoint = os.path.join(args.ckpt_dir,"pretrained/" + ckpt_name)  # 断点路径
@@ -51,8 +52,7 @@ class Trainer(object):
         transform = get_transform(args.model_name,args.datasets,stage="train")
         train_loader, val_loader = get_loader(datasets_name=args.datasets,stage='train',
                                               batch_size=args.batch_size,
-                                              num_workers=args.num_workers,
-                                              transform=transform)
+                                              num_workers=args.num_workers)
 
         self.criterion = torch.nn.CrossEntropyLoss()
         self.train_loader = train_loader
@@ -73,7 +73,7 @@ class Trainer(object):
                 acc = self.evaluation()
                 if acc > self.best_acc:
                     self.best_acc = acc
-                    print("[Val] Epoch:[{}/{}]\tbest_acc={:.3f}, ckpt saved".format(i, self.max_epochs,acc))
+                    self.logger.print("[Val] Epoch:[{}/{}]\tbest_acc={:.3f}, ckpt saved".format(i, self.max_epochs,acc))
                     self.save_ckpt(is_best=True)
                 else:
                     self.save_ckpt(is_best=False)

@@ -3,13 +3,14 @@ from models import ResNet18_30,Mobilenet_v2_30
 from models import ShuffleNet_v2_30,Densenet121_30
 from models import CIFAR_ResNet18,CIFAR_WideResNet28_10
 from models.Unet import ResUnet,ResUnetPlusPlus,ResUnet01
+from torchvision.transforms.functional import to_pil_image
 from timm import create_model
 from default_config import get_default_cfg
 
 cfg = get_default_cfg()
 
 
-__all__ = ['get_classifier','get_generator']
+__all__ = ['get_classifier','get_generator','get_logger','model_load_ckpt_eval','to_pil_image']
 
 
 def get_classifier(args,pretrained = True, feature_map = False):
@@ -114,3 +115,10 @@ class Logger(object):
 
     def close(self):
         self.log.close()
+
+
+
+
+
+
+

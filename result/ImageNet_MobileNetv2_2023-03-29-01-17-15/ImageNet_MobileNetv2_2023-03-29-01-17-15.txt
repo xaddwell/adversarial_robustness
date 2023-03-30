@@ -1,0 +1,17 @@
+[Train] Epoch:[85/100]	 loss=0.00172	 acc=0.929
+[Val] Epoch:[85/100]	best_acc=0.862, ckpt saved
+[Train] Epoch:[86/100]	 loss=0.00098	 acc=0.959
+[Train] Epoch:[87/100]	 loss=0.00096	 acc=0.960
+[Train] Epoch:[88/100]	 loss=0.00083	 acc=0.965
+[Val] Epoch:[88/100]	best_acc=0.863, ckpt saved
+[Train] Epoch:[89/100]	 loss=0.00090	 acc=0.961
+[Train] Epoch:[90/100]	 loss=0.00095	 acc=0.961
+[Train] Epoch:[91/100]	 loss=0.00090	 acc=0.963
+[Train] Epoch:[92/100]	 loss=0.00089	 acc=0.964
+[Train] Epoch:[93/100]	 loss=0.00083	 acc=0.966
+[Train] Epoch:[94/100]	 loss=0.00076	 acc=0.968
+[Train] Epoch:[95/100]	 loss=0.00090	 acc=0.963
+[Train] Epoch:[96/100]	 loss=0.00077	 acc=0.968
+[Train] Epoch:[97/100]	 loss=0.00086	 acc=0.965
+[Train] Epoch:[98/100]	 loss=0.00076	 acc=0.969
+[Train] Epoch:[99/100]	 loss=0.00073	 acc=0.970
